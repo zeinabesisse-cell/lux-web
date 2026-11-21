@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>LUX • Session sécurisée</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#121d2e;--panel2:#17253a;--line:#26364d;--text:#edf3fb;--muted:#9badc3;--cyan:#55d6d0;--blue:#73a7ff;--red:#ff6b72;--green:#52d49b;--amber:#f4c56a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1000px 500px at 15% -10%,#1a3555 0%,transparent 58%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+header{max-width:1100px;margin:auto;padding:28px 22px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#64e1d2,#458bff);display:grid;place-items:center;color:#071423;font-weight:900;font-size:19px;box-shadow:0 8px 28px #4ea9d944}.brand h1{font-size:22px;letter-spacing:.13em;margin:0}.brand p{margin:1px 0 0;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.pill{border:1px solid #33506c;background:#12283a;color:#b9e9e4;padding:7px 11px;border-radius:99px;font-size:12px;white-space:nowrap}
+main{max-width:1100px;margin:auto;padding:12px 22px 48px}.hero{padding:20px 0 22px}.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}.hero h2{font-size:clamp(28px,5vw,42px);line-height:1.12;margin:9px 0 12px;max-width:760px}.hero p{color:var(--muted);max-width:760px;margin:0}
+.notice{display:flex;gap:12px;align-items:flex-start;background:#10283a;border:1px solid #244a61;border-radius:16px;padding:14px 16px;margin:18px 0 24px;color:#c9e8ef}.notice strong{color:#fff}.notice .symbol{font-size:21px;line-height:1.1}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:11px 16px;border-radius:12px;font-weight:650;cursor:pointer}.tab[aria-selected="true"]{background:#17364a;border-color:#3c9d9c;color:#e7fffc}
+.layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:18px}.card{background:linear-gradient(180deg,#142136,#101a2a);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 18px 55px #0003;min-width:0}.card h3{font-size:18px;margin:0 0 6px}.sub{color:var(--muted);font-size:14px;margin:0 0 16px}.step{display:flex;gap:12px;margin:16px 0}.num{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#203b55;color:#a9e6e0;font-weight:800;font-size:13px}.step p{margin:1px 0;color:#d8e2ef;font-size:14px}.field-label{display:block;font-size:13px;font-weight:700;color:#c3d0e2;margin:14px 0 7px}textarea{display:block;width:100%;min-height:115px;resize:vertical;border:1px solid #34465f;border-radius:12px;background:#091321;color:#e9f2ff;padding:12px;font:12px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;outline:none}textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #55d6d022}button{font:inherit}.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:750;cursor:pointer;transition:filter .15s,transform .15s}.btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(1px)}.btn:disabled{opacity:.45;cursor:not-allowed}.primary{background:linear-gradient(120deg,#54d9c9,#63a9ff);color:#071624}.secondary{background:#22344b;color:#e7effa;border:1px solid #3b506d}.danger{background:#4a202b;color:#ffdce0;border:1px solid #813b4c}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.status{display:flex;align-items:center;gap:9px;padding:11px 12px;background:#0a1524;border:1px solid #25364c;border-radius:12px;color:#b7c6d9;font-size:13px;margin:12px 0}.dot{width:9px;height:9px;border-radius:50%;background:#74869c;box-shadow:0 0 0 4px #74869c22;flex:0 0 auto}.dot.good{background:var(--green);box-shadow:0 0 0 4px #52d49b22}.dot.warn{background:var(--amber);box-shadow:0 0 0 4px #f4c56a22}.dot.bad{background:var(--red);box-shadow:0 0 0 4px #ff6b7222}
+.media{background:#050a12;border:1px solid #2c3e55;border-radius:16px;overflow:hidden;min-height:220px;display:grid;place-items:center;position:relative}.media video{display:block;width:100%;max-height:460px;aspect-ratio:16/9;object-fit:contain;background:#050a12}.media .placeholder{padding:30px;text-align:center;color:#8ea1b9}.media .placeholder b{display:block;color:#d9e5f3;margin-bottom:5px}.media-tag{position:absolute;left:12px;top:12px;background:#091321d9;border:1px solid #465970;border-radius:99px;padding:5px 9px;font-size:11px;color:#dce8f7;z-index:2}
+.small{font-size:12px;color:var(--muted);margin-top:12px}.hidden{display:none!important}.info-list{padding-left:18px;color:#b7c6d9;font-size:13px}.info-list li{margin:7px 0}.foot{color:#778aa2;font-size:12px;text-align:center;padding:28px 8px 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:780px){header{padding:20px 16px 10px}.pill{display:none}main{padding:8px 14px 36px}.layout{grid-template-columns:1fr}.card{padding:16px}.hero{padding-top:13px}.media{min-height:190px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">LX</div><div><h1>LUX</h1><p>Session privée • version 0.5 bêta</p></div></div>
+  <div class="pill">● Connexion initiée par l’utilisateur</div>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">Espace de session</div>
+    <h2>Une connexion claire.<br>Un contrôle toujours visible.</h2>
+    <p>Relie un téléphone à ton PC pour une session vidéo et audio volontaire. Le téléphone garde le contrôle de sa caméra et de son microphone.</p>
+  </section>
+  <div class="notice"><div class="symbol">◈</div><div><strong>Confidentialité intégrée :</strong> aucune caméra ni aucun microphone ne démarre à l’ouverture de cette page. Sur le téléphone, il faut appuyer sur « Démarrer caméra + micro » puis autoriser les demandes du navigateur. Le bouton « Arrêter » coupe les pistes locales.</div></div>
+
+  <div class="tabs" role="tablist" aria-label="Choisir le rôle de cet appareil">
+    <button class="tab" id="tab-pc" role="tab" aria-selected="true" aria-controls="panel-pc">PC · Recevoir le flux</button>
+    <button class="tab" id="tab-phone" role="tab" aria-selected="false" aria-controls="panel-phone">Téléphone · Envoyer le flux</button>
+  </div>
+
+  <section id="panel-pc" role="tabpanel" aria-labelledby="tab-pc">
+    <div class="layout">
+      <article class="card">
+        <h3>Réception sur le PC</h3><p class="sub">Crée une demande, puis échange les deux textes de connexion manuellement.</p>
+        <div class="status" id="pc-status"><span class="dot" id="pc-dot"></span><span id="pc-status-text">En attente de création de session.</span></div>
+        <div class="step"><span class="num">1</span><p>Appuie sur <b>Créer la demande</b>. LUX prépare une offre de connexion à transmettre au téléphone.</p></div>
+        <button class="btn primary" id="create-offer">Créer la demande</button>
+        <label class="field-label" for="offer-out">A · Demande à copier vers le téléphone</label>
+        <textarea id="offer-out" readonly placeholder="L’offre apparaîtra ici après sa création."></textarea>
+        <div class="actions"><button class="btn secondary" id="copy-offer" disabled>Copier la demande</button></div>
+        <div class="step"><span class="num">2</span><p>Sur le téléphone, colle la demande, démarre la caméra et le micro, puis copie la réponse générée.</p></div>
+        <label class="field-label" for="answer-in">B · Réponse reçue du téléphone</label>
+        <textarea id="answer-in" placeholder="Colle ici la réponse créée sur le téléphone."></textarea>
+        <div class="actions"><button class="btn primary" id="accept-answer" disabled>Connecter le téléphone</button><button class="btn danger" id="pc-stop" disabled>Arrêter la session</button></div>
+        <p class="small">Échange les textes uniquement entre tes appareils. Ils contiennent les paramètres techniques temporaires de la connexion, pas de mot de passe.</p>
+      </article>
+      <article class="card">
+        <h3>Flux reçu</h3><p class="sub">L’image et le son du téléphone apparaîtront ici lorsque la connexion sera établie.</p>
+        <div class="media"><span class="media-tag">TÉLÉPHONE DISTANT</span><div class="placeholder" id="remote-placeholder"><b>En attente du téléphone</b>Le flux apparaîtra après l’échange de la réponse.</div><video id="remote-video" autoplay playsinline controls class="hidden"></video></div>
+        <div class="actions"><button class="btn secondary" id="enable-audio" disabled>Activer le son</button></div>
+        <ul class="info-list"><li>La lecture audio peut demander un clic sur « Activer le son ».</li><li>Utilise un casque pour éviter le retour audio.</li><li>Un seul téléphone est connecté à cette session bêta.</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="panel-phone" role="tabpanel" aria-labelledby="tab-phone" class="hidden">
+    <div class="layout">
+      <article class="card">
+        <h3>Envoi depuis le téléphone</h3><p class="sub">La caméra et le micro restent éteints jusqu’à ton action.</p>
+        <div class="status" id="phone-status"><span class="dot" id="phone-dot"></span><span id="phone-status-text">En attente de la demande du PC.</span></div>
+        <div class="step"><span class="num">1</span><p>Colle ici la demande créée sur le PC.</p></div>
+        <label class="field-label" for="offer-in">A · Demande du PC</label>
+        <textarea id="offer-in" placeholder="Colle ici le texte copié depuis le PC."></textarea>
+        <div class="step"><span class="num">2</span><p>Appuie ci-dessous pour demander l’accès à la caméra et au micro. Le navigateur affichera ses propres autorisations.</p></div>
+        <button class="btn primary" id="start-phone">Démarrer caméra + micro</button>
+        <div class="actions"><button class="btn secondary" id="copy-answer" disabled>Copier la réponse vers le PC</button><button class="btn danger" id="phone-stop" disabled>Arrêter caméra + micro</button></div>
+        <p class="small">Pour la première version, les deux appareils doivent être sur le même Wi-Fi. Certains routeurs empêchent les appareils de communiquer entre eux.</p>
+      </article>
+      <article class="card">
+        <h3>Aperçu local du téléphone</h3><p class="sub">Tu vois ce qui est envoyé pendant que la session est active.</p>
+        <div class="media"><span class="media-tag">APERÇU SUR CE TÉLÉPHONE</span><div class="placeholder" id="local-placeholder"><b>Caméra désactivée</b>Rien ne sera capté avant ton clic.</div><video id="local-video" autoplay playsinline muted class="hidden"></video></div>
+        <ul class="info-list"><li>Le navigateur indique aussi quand la caméra ou le micro est utilisé.</li><li>Le bouton Arrêter coupe les deux pistes et ferme la connexion.</li><li>Verrouiller le téléphone ou quitter Safari peut interrompre la session.</li></ul>
+      </article>
+    </div>
+  </section>
+  <div class="foot">LUX 0.5 BÊTA · Connexion WebRTC directe · Aucun compte, mot de passe ou stockage de média dans cette page</div>
+</main>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const state = { pc: null, localStream: null, remoteStream: null, role: 'pc' };
+  const rtcConfig = { iceServers: [] }; // mode réseau local : aucun serveur STUN/TURN tiers
+
+  function setStatus(prefix, message, kind='') {
+    $(prefix + '-status-text').textContent = message;
+    const dot = $(prefix + '-dot');
+    dot.className = 'dot' + (kind ? ' ' + kind : '');
+  }
+  function showRole(role) {
+    state.role = role;
+    const pc = role === 'pc';
+    $('panel-pc').classList.toggle('hidden', !pc);
+    $('panel-phone').classList.toggle('hidden', pc);
+    $('tab-pc').setAttribute('aria-selected', String(pc));
+    $('tab-phone').setAttribute('aria-selected', String(!pc));
+  }
+  $('tab-pc').addEventListener('click', () => showRole('pc'));
+  $('tab-phone').addEventListener('click', () => showRole('phone'));
+
+  function waitForIceComplete(pc) {
+    if (pc.iceGatheringState === 'complete') return Promise.resolve();
+    return new Promise((resolve) => {
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        pc.removeEventListener('icegatheringstatechange', check);
+        clearTimeout(timer);
+        resolve();
+      };
+      const check = () => { if (pc.iceGatheringState === 'complete') finish(); };
+      const timer = setTimeout(finish, 12000);
+      pc.addEventListener('icegatheringstatechange', check);
+    });
+  }
+  function parseDescription(text) {
+    let value;
+    try { value = JSON.parse(text.trim()); }
+    catch (_) { throw new Error('Le texte collé ne semble pas être une demande/réponse LUX valide.'); }
+    if (!value || !['offer','answer'].includes(value.type) || typeof value.sdp !== 'string') {
+      throw new Error('Le texte de connexion est incomplet ou invalide.');
+    }
+    return value;
+  }
+  function cleanup() {
+    if (state.localStream) {
+      state.localStream.getTracks().forEach(track => track.stop());
+      state.localStream = null;
+    }
+    if (state.pc) {
+      try { state.pc.ontrack = null; state.pc.onconnectionstatechange = null; state.pc.close(); } catch (_) {}
+      state.pc = null;
+    }
+    $('local-video').srcObject = null;
+    $('remote-video').srcObject = null;
+    $('local-video').classList.add('hidden');
+    $('remote-video').classList.add('hidden');
+    $('local-placeholder').classList.remove('hidden');
+    $('remote-placeholder').classList.remove('hidden');
+    $('copy-answer').disabled = true;
+    $('phone-stop').disabled = true;
+    $('pc-stop').disabled = true;
+    $('enable-audio').disabled = true;
+    $('copy-offer').disabled = true;
+    $('accept-answer').disabled = true;
+    state.remoteStream = null;
+  }
+  function bindConnectionState(pc, side) {
+    pc.addEventListener('connectionstatechange', () => {
+      const s = pc.connectionState;
+      if (s === 'connected') setStatus(side, 'Connecté. La session est active.', 'good');
+      else if (s === 'connecting') setStatus(side, 'Connexion en cours…', 'warn');
+      else if (s === 'disconnected') setStatus(side, 'Connexion interrompue. Vérifie le Wi-Fi.', 'warn');
+      else if (s === 'failed') setStatus(side, 'Connexion impossible sur ce réseau.', 'bad');
+      else if (s === 'closed') setStatus(side, 'Session arrêtée.', '');
+    });
+  }
+
+  $('create-offer').addEventListener('click', async () => {
+    cleanup();
+    try {
+      if (!window.RTCPeerConnection) throw new Error('Ce navigateur ne prend pas en charge WebRTC.');
+      const pc = new RTCPeerConnection(rtcConfig);
+      state.pc = pc;
+      pc.addTransceiver('video', { direction: 'recvonly' });
+      pc.addTransceiver('audio', { direction: 'recvonly' });
+      pc.addEventListener('track', (event) => {
+        const stream = event.streams && event.streams[0];
+        if (!stream) return;
+        state.remoteStream = stream;
+        $('remote-video').srcObject = stream;
+        $('remote-video').classList.remove('hidden');
+        $('remote-placeholder').classList.add('hidden');
+        $('remote-video').muted = true;
+        $('enable-audio').disabled = false;
+        $('remote-video').play().catch(() => {});
+      });
+      bindConnectionState(pc, 'pc');
+      setStatus('pc', 'Création de la demande de connexion…', 'warn');
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+      await waitForIceComplete(pc);
+      $('offer-out').value = JSON.stringify(pc.localDescription);
+      $('copy-offer').disabled = false;
+      $('accept-answer').disabled = false;
+      $('pc-stop').disabled = false;
+      setStatus('pc', 'Demande prête. Transfère-la au téléphone.', 'good');
+    } catch (err) {
+      cleanup();
+      setStatus('pc', err.message || 'Erreur lors de la création.', 'bad');
+    }
+  });
+
+  $('copy-offer').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('offer-out').value); setStatus('pc', 'Demande copiée. Colle-la sur le téléphone.', 'good'); }
+    catch (_) { $('offer-out').select(); setStatus('pc', 'Sélectionne le texte puis copie-le manuellement.', 'warn'); }
+  });
+
+  $('accept-answer').addEventListener('click', async () => {
+    try {
+      if (!state.pc) throw new Error('Crée d’abord une demande de connexion.');
+      const answer = parseDescription($('answer-in').value);
+      if (answer.type !== 'answer') throw new Error('Il faut coller la réponse du téléphone, pas une demande.');
+      await state.pc.setRemoteDescription(answer);
+      setStatus('pc', 'Réponse reçue. Connexion en cours…', 'warn');
+      $('pc-stop').disabled = false;
+    } catch (err) { setStatus('pc', err.message, 'bad'); }
+  });
+
+  $('enable-audio').addEventListener('click', async () => {
+    try {
+      $('remote-video').muted = false;
+      await $('remote-video').play();
+      $('enable-audio').textContent = 'Son activé';
+      $('enable-audio').disabled = true;
+    } catch (_) { setStatus('pc', 'Le navigateur bloque la lecture audio. Vérifie le volume et réessaie.', 'warn'); }
+  });
+
+  $('start-phone').addEventListener('click', async () => {
+    cleanup();
+    try {
+      if (!window.isSecureContext || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Cette page doit être ouverte en HTTPS pour demander la caméra et le micro.');
+      }
+      const offer = parseDescription($('offer-in').value);
+      if (offer.type !== 'offer') throw new Error('Il faut coller la demande créée sur le PC.');
+      setStatus('phone', 'Demande d’autorisation au navigateur…', 'warn');
+      // Le seul endroit de l’application qui demande la caméra et le micro : clic explicite de l’utilisateur.
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        video: { facingMode: { ideal: 'user' }, width: { ideal: 1280 }, height: { ideal: 720 } }
+      });
+      state.localStream = stream;
+      // Le bouton d'arrêt est activé dès que les pistes locales existent.
+      $('phone-stop').disabled = false;
+      $('local-video').srcObject = stream;
+      $('local-video').classList.remove('hidden');
+      $('local-placeholder').classList.add('hidden');
+      await $('local-video').play().catch(() => {});
+
+      const pc = new RTCPeerConnection(rtcConfig);
+      state.pc = pc;
+      bindConnectionState(pc, 'phone');
+      await pc.setRemoteDescription(offer);
+      stream.getTracks().forEach(track => pc.addTrack(track, stream));
+      const answer = await pc.createAnswer();
+      await pc.setLocalDescription(answer);
+      setStatus('phone', 'Caméra et micro actifs. Préparation de la réponse…', 'good');
+      await waitForIceComplete(pc);
+      $('answer-out').value = JSON.stringify(pc.localDescription);
+      $('copy-answer').disabled = false;
+      $('phone-stop').disabled = false;
+      setStatus('phone', 'Aperçu actif. Copie la réponse vers le PC.', 'good');
+    } catch (err) {
+      cleanup();
+      let msg = err.message || 'Impossible de démarrer les médias.';
+      if (err.name === 'NotAllowedError') msg = 'Autorisation refusée. Autorise caméra et micro dans Safari, puis réessaie.';
+      if (err.name === 'NotFoundError') msg = 'Caméra ou microphone introuvable sur cet appareil.';
+      if (err.name === 'NotReadableError') msg = 'La caméra ou le micro est déjà utilisé par une autre application.';
+      setStatus('phone', msg, 'bad');
+    }
+  });
+
+  $('copy-answer').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('answer-out').value); setStatus('phone', 'Réponse copiée. Colle-la sur le PC.', 'good'); }
+    catch (_) { $('answer-out').select(); setStatus('phone', 'Sélectionne le texte puis copie-le manuellement.', 'warn'); }
+  });
+  $('pc-stop').addEventListener('click', () => { cleanup(); setStatus('pc', 'Session arrêtée.', ''); });
+  $('phone-stop').addEventListener('click', () => { cleanup(); setStatus('phone', 'Caméra, micro et connexion arrêtés.', ''); });
+  window.addEventListener('pagehide', () => { cleanup(); });
+
+  // Champ de réponse masqué jusqu'à la préparation d'une réponse téléphonique.
+  const answerArea = document.createElement('div');
+  answerArea.innerHTML = '<label class="field-label" for="answer-out">B · Réponse à copier vers le PC</label><textarea id="answer-out" readonly placeholder="La réponse apparaîtra après autorisation."></textarea>';
+  $('copy-answer').parentElement.parentElement.insertBefore(answerArea, $('copy-answer').parentElement);
+  $('answer-out').value = '';
+})();
+</script>
+</body>
+</html>
